@@ -1,0 +1,122 @@
+<script>
+    import Draggable from '$lib/components/Draggable.svelte';
+
+    let products = [
+        { title: 'Produkt 1', price: 100 },
+        { title: 'Produkt 2', price: 100 },
+        { title: 'Produkt 3', price: 100 },
+        { title: 'Produkt 4', price: 100 },
+        { title: 'Produkt 5', price: 100 },
+        { title: 'Produkt 6', price: 100 },
+        { title: 'Produkt 7', price: 100 },
+    ]
+
+    let size = 2;
+
+    function add() {
+        products = products.concat({ title: 'New Item', price: 100 });
+    }
+
+    function remove() {
+        products = products.slice(0, -1)
+    }
+
+
+</script>
+
+<Draggable>
+    <div class="w-[350px] bg-stone-500 pt-6 rounded-md print:hidden">
+        <div class="p-2 bg-stone-300 rounded-b-md">
+            <div class="mb-2 flex space-x-2">
+                <button on:click={() => window.print()} class="bg-white w-1/3 text-purple-500 py-2 font-medium px-4 rounded">
+                    print
+                </button>
+                <button on:click={add} class=" bg-white w-1/3 text-green-500 py-2 font-medium px-4 rounded">
+                    add
+                </button>
+                <button on:click={remove} class="bg-white w-1/3 text-red-500 py-2 font-medium px-4 rounded">
+                    remove
+                </button>
+            </div>
+            <div class="mb-2">
+                {#each products as product}
+                    <div class="flex w-full justify-between space-x-2 mb-2 last:mb-0">
+                        <input class="w-3/4 py-2 px-4 rounded" placeholder="Title" bind:value={product.title}>
+                        <input class="w-1/4 py-2 px-4 rounded" placeholder="Price" bind:value={product.price}> 
+                    </div>
+                {/each} 
+            </div>
+            <div class="flex space-x-2">
+                <label class="w-1/3">
+                    <input class="sr-only peer" name="privacy" type="radio" bind:group={size} value={1} />
+                    <div class="cursor-pointer w-full text-center rounded flex-1 appearance-none  py-2 px-4 bg-white text-neutral-700  text-base peer-checked:outline-none font-medium peer-checked:bg-stone-700 peer-checked:text-stone-100">
+                      small
+                    </div>
+                  </label>
+                
+                  <label class="w-1/3">
+                    <input class="sr-only peer" name="privacy" type="radio" bind:group={size} value={2} />
+                    <div class="cursor-pointer w-full text-center rounded flex-1 appearance-none py-2 px-4 bg-white text-neutral-700  text-base peer-checked:outline-none font-medium peer-checked:bg-stone-700 peer-checked:text-stone-100">
+                      medium
+                    </div>
+                  </label>
+                
+                  <label class="w-1/3">
+                    <input class="sr-only peer" name="privacy" type="radio" bind:group={size} value={3} />
+                    <div class="cursor-pointer w-full text-center rounded flex-1 appearance-none py-2 px-4 bg-white text-neutral-700  text-base peer-checked:outline-none font-medium peer-checked:bg-stone-700 peer-checked:text-stone-100">
+                      large
+                    </div>
+                  </label>
+                
+            </div>
+        </div>
+</div>
+</Draggable>
+
+<!-- <div class="fixed top-4 left-4 w-[300px]">
+    <div class="mb-4">
+        <button on:click={add} class="bg-white w-1/3 text-purple-500 py-2 font-medium px-4 rounded items-center">
+            print
+        </button>
+            <button on:click={add} class=" bg-white w-1/3 text-green-500 py-2 font-medium px-4 rounded items-center">
+                add
+            </button>
+            <button on:click={remove} class="bg-white w-1/3 text-red-500 py-2 font-medium px-4 rounded items-center">
+                remove
+            </button>
+    </div>
+    <div>
+        {#each products as product}
+            <div class="flex w-full justify-between space-x-2 mb-2">
+                <input class="w-3/4 py-2 px-4 rounded" placeholder="Title" bind:value={product.title}>
+                <input class="w-1/4 py-2 px-4 rounded" placeholder="Price" bind:value={product.price}> 
+             </div>
+         {/each} 
+    </div>
+</div> -->
+<div class="flex space-x-4 h-full">
+    <div class="preview w-full h-full p-4 flex justify-center items-center">
+            <div class="a5 print:border print:border-stone-300 w-[148mm] h-[210mm] bg-white p-6 flex flex-col justify-between">
+                <div class="head h-1/5">
+                    <h1 class="title uppercase text-6xl "> Le Concept</h1>
+                </div>
+                <div class="content ">
+                    <div class="products mb-4 {size === 1 ? 'text-3xl' : ''} {size === 2 ? 'text-4xl' : ''} {size === 3 ? 'text-5xl' : ''} leading-snug">
+                    {#each products as product}
+                        <div class="flex w-full justify-between items-end">
+                            <p class="w-2/3" >{product.title}</p>
+                            <p class="w-1/3 text-right" >{product.price} Kč</p>
+                        </div>
+                {/each} 
+            </div>
+                <div class="foot {size === 1 ? 'text-3xl' : ''} {size === 2 ? 'text-4xl' : ''} {size === 3 ? 'text-5xl' : ''} lowercase leading-none">
+                    <p class="">více na leconcept.cz</p>
+                </div>
+                </div>
+                
+                
+
+            </div>
+        </div>
+    
+</div>

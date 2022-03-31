@@ -3,27 +3,27 @@
 
     let products = [{
             title: 'Product',
-            price: 100
+            price: '0 000'
         },
         {
             title: 'Product',
-            price: 100
+            price: '0 000'
         },
         {
             title: 'Product',
-            price: 100
+            price: '0 000'
         },
         {
             title: 'Product',
-            price: 100
+            price: '0 000'
         },
         {
             title: 'Product',
-            price: 100
+            price: '0 000'
         },
         {
             title: 'Product',
-            price: 100
+            price: '0 000'
         },
     ]
 
@@ -32,7 +32,7 @@
     function add() {
         products = products.concat({
             title: 'New Item',
-            price: 100
+            price: '0 000'
         });
     }
 

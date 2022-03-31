@@ -104,8 +104,8 @@
                     <div class="products mb-4 {size === 1 ? 'text-3xl' : ''} {size === 2 ? 'text-4xl' : ''} {size === 3 ? 'text-5xl' : ''} leading-snug">
                     {#each products as product}
                         <div class="flex w-full justify-between items-end">
-                            <p class="w-2/3" >{product.title}</p>
-                            <p class="w-1/3 text-right" >{product.price} Kč</p>
+                            <p class="grow" >{product.title}</p>
+                            <p class="flex-none text-right" >{product.price} Kč</p>
                         </div>
                 {/each} 
             </div>
